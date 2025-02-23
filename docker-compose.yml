@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  elysia-backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    container_name: elysia-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - BUN_ENV=development
+    volumes:
+      - ./backend:/app
+    restart: unless-stopped
