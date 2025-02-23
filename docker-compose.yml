@@ -1,16 +1,33 @@
 version: '3.8'
+name: 'webdev'
 
 services:
-  elysia-backend:
+  elysia:
     build:
       context: backend
       dockerfile: Dockerfile
-    container_name: elysia-backend
+    container_name: elysia
     ports:
-      - "3000:3000"
+      - "${ELYISIA_PORT:-3000}:3000"
     environment:
       - NODE_ENV=development
       - BUN_ENV=development
     volumes:
       - ./backend:/app
+    restart: unless-stopped
+
+
+  react:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    container_name: react
+    ports:
+      - "${REACT_PORT:-3001}:${REACT_PORT:-3001}"
+    environment:
+      - NODE_ENV=${NODE_ENV:-development}
+      - BUN_ENV=${NODE_ENV:-development}
+      - PORT=${REACT_PORT:-3001}
+    volumes:
+      - ./frontend:/app
     restart: unless-stopped
