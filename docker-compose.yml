@@ -17,17 +17,18 @@ services:
     restart: unless-stopped
 
 
-  react:
+  vite:
     build:
       context: frontend
       dockerfile: Dockerfile
-    container_name: react
+    container_name: vite
     ports:
-      - "${REACT_PORT:-3001}:${REACT_PORT:-3001}"
+      - "${REACT_PORT:-3001}:5173"
     environment:
       - NODE_ENV=${NODE_ENV:-development}
       - BUN_ENV=${NODE_ENV:-development}
-      - PORT=${REACT_PORT:-3001}
+      - VITE_BACKEND_URL=${BACKEND_URL:-http://185.179.190.134:3000/}
     volumes:
       - ./frontend:/app
     restart: unless-stopped
+
