@@ -10,14 +10,14 @@ const router = createRouter({
       component: HomeView,
     },
     {
-      path: '/about',
-      name: 'about',
-      component: () => import('../views/AboutView.vue'),
-    },
-    {
       path: '/clicker',
       name: 'clicker',
       component: () => import('../views/ClickerView.vue'),
+    },
+    {
+      path: '/canvas',
+      name: 'canvas',
+      component: () => import('../views/CanvasView.vue'),
     },
   ],
 })
