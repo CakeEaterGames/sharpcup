@@ -14,6 +14,7 @@ services:
       - BUN_ENV=development
     volumes:
       - ./backend:/app
+      - /app/node_modules
     restart: unless-stopped
 
 
@@ -30,5 +31,6 @@ services:
       - VITE_BACKEND_URL=${BACKEND_URL:-http://185.179.190.134:3000/}
     volumes:
       - ./frontend:/app
+      - /app/node_modules
     restart: unless-stopped
 
